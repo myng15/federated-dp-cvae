@@ -13,7 +13,7 @@ from torch.utils.data import DataLoader
 from aggregator import CentralizedAggregator, NoCommunicationAggregator
 from client import Client, PersonalizedClient
 from learner import Learner
-from models.linear_classifier import LinearLayer
+from models.linear import LinearLayer
 from datasets import SubCAMELYON17, SubMedMNIST
 from .constants import LOADER_TYPE, EXTENSIONS, N_CLASSES, NUM_WORKERS
 from .optim import get_optimizer, get_lr_scheduler
