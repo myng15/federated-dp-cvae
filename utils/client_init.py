@@ -8,7 +8,7 @@ from utils.utils import get_client, get_learner, get_loaders
 from utils.constants import EMBEDDING_DIM
 
 
-def init_clients(args_, data_dir, chkpts_dir, features_dimension=None, rng=None, for_ours=False):
+def init_clients(args_, data_dir, chkpts_dir, features_dimension=None, for_ours=False):
     """
     Initialize clients from data folders
 
@@ -16,7 +16,6 @@ def init_clients(args_, data_dir, chkpts_dir, features_dimension=None, rng=None,
     :param data_dir: Path to data directory
     :param chkpts_dir: Directory to save checkpoints
     :param features_dimension: Optional, used for eval_ours.py
-    :param rng: Optional, used for eval_ours.py
     :param for_ours: If True, use eval_ours.py logic
     :return: List[Client]
     """
@@ -75,8 +74,7 @@ def init_clients(args_, data_dir, chkpts_dir, features_dimension=None, rng=None,
                     test_iterator=test_loader,
                     client_id=client_id,
                     args=args_,
-                    features_dimension=features_dimension, 
-                    rng=rng
+                    features_dimension=features_dimension
                 )
                 if client.n_train_samples == 0 or client.n_test_samples == 0:
                     continue

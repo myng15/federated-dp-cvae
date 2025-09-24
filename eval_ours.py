@@ -25,7 +25,6 @@ def train_anonymizer_fedavg(clients, args_):
     chkpts_dir = os.path.join(args_.chkpts_dir, args_.anonymizer)
     os.makedirs(chkpts_dir, exist_ok=True)
 
-    # rng = np.random.default_rng(seed=args_.seed)
     g = torch.Generator()
     g.manual_seed(args_.seed)
 
@@ -187,14 +186,12 @@ def run(arguments_manager_):
     weights_grid_ = np.arange(0.0, 1.0 + 1e-6, args_.weights_grid_resolution)
 
     print("===> Initializing clients...")
-    rng = np.random.default_rng(seed=args_.seed)
     features_dimension = EMBEDDING_DIM[args_.backbone] 
     clients = init_clients(
         args_,
         data_dir=os.path.join(data_dir, "train"),
         chkpts_dir=os.path.join(chkpts_dir, "train"),
         features_dimension=features_dimension,
-        rng=rng,
         for_ours=True
     )
     
