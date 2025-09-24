@@ -3,8 +3,12 @@
 
 <p align="center">
     [<a href="https://arxiv.org/abs/2507.02671">Preprint</a>]
+    [<a href="https://papers.miccai.org/miccai-2025/paper/0970_paper.pdf">MICCAI Paper</a>]
     [<a href="#citation">Bibtex</a>]
   </p>
+
+
+## Overview
 
 Deep Learning (DL) has revolutionized medical imaging, yet its adoption is constrained by data scarcity and privacy regulations, limiting access to diverse datasets. Federated Learning (FL) enables decentralized training but suffers from high communication costs and is often restricted to a single downstream task, reducing flexibility. We propose a data-sharing method via Differentially Private (DP) generative models. By adopting foundation models, we extract compact, informative embeddings, reducing redundancy and lowering computational overhead. Clients collaboratively train a Differentially Private Conditional Variational Autoencoder (DP-CVAE) to model a global, privacy-aware data distribution, supporting diverse downstream tasks. Our approach, validated across multiple feature extractors, enhances privacy, scalability, and efficiency, outperforming traditional FL classifiers while ensuring differential privacy. Additionally, DP-CVAE produces higher-fidelity embeddings than DP-CGAN while requiring $5 \times$ fewer parameters.
 
@@ -13,6 +17,9 @@ Deep Learning (DL) has revolutionized medical imaging, yet its adoption is const
 </p>
 
 **Figure**: Illustration of our proposed methodology. (1) Each client $\mathcal{H}$ encodes its image-based dataset $\mathcal{D}$ into an embedding-based dataset $\mathcal{S}$ using a large, pre-trained foundation model $\mathrm{\Phi}$, reducing data storage requirements and computational overhead. (2) Clients collaboratively train a lightweight DP-CVAE ($\mathcal{E},\mathcal{D}$) and periodically share decoder weights, which are aggregated into a global decoder $\mathcal{D}^{\text{g}}$. This shared decoder captures cross-client variation while preserving local data privacy. (3) Each client independently generates a synthetic dataset $\hat{\mathcal{S}}$ using the globally trained generative model, and (4) utilizes (real) local and (synthetic) global data for any downstream task $f$.
+
+
+## Usage
 
 ### 0. Install dependencies:
 ```
@@ -80,7 +87,7 @@ bash experiments/[dataset]/ours.sh
 In this script, you can switch the argument `--anonymizer` between `cvae_fedavg` (for DP-CVAE) and `cgan_fedavg` (for DP-CGAN).
 
 
-### Citation
+## Citation
 
 If you find this work useful, please consider citing us:
 
